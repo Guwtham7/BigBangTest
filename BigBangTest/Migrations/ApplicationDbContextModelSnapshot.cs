@@ -106,6 +106,9 @@ namespace BigBangTest.Migrations
                     b.Property<int>("motel_Id")
                         .HasColumnType("int");
 
+                    b.Property<int?>("motel_Id1")
+                        .HasColumnType("int");
+
                     b.Property<double>("price")
                         .HasColumnType("float");
 
@@ -114,7 +117,21 @@ namespace BigBangTest.Migrations
 
                     b.HasKey("room_Id");
 
+                    b.HasIndex("motel_Id1");
+
                     b.ToTable("Room");
+                });
+
+            modelBuilder.Entity("BigBangTest.Models.Room", b =>
+                {
+                    b.HasOne("BigBangTest.Models.Motel", null)
+                        .WithMany("Room")
+                        .HasForeignKey("motel_Id1");
+                });
+
+            modelBuilder.Entity("BigBangTest.Models.Motel", b =>
+                {
+                    b.Navigation("Room");
                 });
 #pragma warning restore 612, 618
         }

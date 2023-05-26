@@ -10,7 +10,7 @@ namespace BigBangTest.Models
         public int room_Id { get; set; }
 
         [ForeignKey("Motel")]
-        public Motel? motel_Id { get; set; }
+        public int  motel_Id { get; set; }
 
         public int? room_Number { get; set; }
 

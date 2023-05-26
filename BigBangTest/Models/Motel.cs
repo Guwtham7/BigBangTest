@@ -20,5 +20,7 @@ namespace BigBangTest.Models
         [Required]
         public string Rating { get; set; } = string.Empty;
 
+        
+
     }
 }
