@@ -33,17 +33,17 @@ namespace BigBangTest.Services.MotelServices
         }
         public async Task<List<Motel>> AvailableAminites()
         {
-            var Hotel = _context.Motel.Where(x => x.Amenities=="SPA").ToListAsync();
+            var Hotel = _context.Motel.Where(x => x.Amenities == "SPA" || x.Amenities == "GYM" || x.Amenities == "Cafe" || x.Amenities == "Bar").ToListAsync();
             return await Hotel;
         }
         public async Task<List<Motel>> AvailableRoomoption()
         {
-            var Hotel = _context.Motel.Where(x => x.RoomOptions=="Free Wi-Fi" || x.RoomOptions == "Free BreakFast").ToListAsync();
+            var Hotel = _context.Motel.Where(x => x.RoomOptions=="Free Wi-Fi" || x.RoomOptions == "Free BreakFast" || x.RoomOptions == "Free Cancellation").ToListAsync();
             return await Hotel;
         }
         public async Task<List<Motel>> Available_Locations()
         {
-            var Hotel = _context.Motel.Where(x => x.Location == "Chennai").ToListAsync();
+            var Hotel = _context.Motel.Where(x => x.Location == "Chennai" || x.Location == "Banglore").ToListAsync();
             return await Hotel;
         }
     }
