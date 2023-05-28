@@ -9,8 +9,8 @@ namespace BigBangTest.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int room_Id { get; set; }
 
-        [ForeignKey("Motel")]
-        public int  motel_Id { get; set; }
+        
+        
 
         public int? room_Number { get; set; }
 
@@ -26,7 +26,7 @@ namespace BigBangTest.Models
         [Required]
         public double price { get; set; }
 
-       
+        public Motel? motel_ID { get; set; }
      
     }
 }

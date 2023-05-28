@@ -1,15 +1,6 @@
-﻿/*using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace JWTCodeFirst.Auth
-{
-    public class Registration
-    {
-    }
-}
-*/
-
-using System.ComponentModel.DataAnnotations;
-namespace Authentication7.Auth
+namespace BigBangTest.Auth
 {
     public class Registrationmodule
     {

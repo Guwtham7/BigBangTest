@@ -1,11 +1,4 @@
-﻿/*amespace JWTCodeFirst.Auth
-{
-    public class UserRole
-    {
-    }
-}*/
-
-namespace Authentication7.Auth
+﻿namespace BigBangTest.Auth
 {
     public class UserRoles
     {

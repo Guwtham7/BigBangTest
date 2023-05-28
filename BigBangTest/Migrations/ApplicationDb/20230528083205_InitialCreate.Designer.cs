@@ -4,16 +4,19 @@ using BigBangTest.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BigBangTest.Migrations
+namespace BigBangTest.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230528083205_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,10 +106,7 @@ namespace BigBangTest.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("motel_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("motel_Id1")
+                    b.Property<int?>("motel_Id")
                         .HasColumnType("int");
 
                     b.Property<double>("price")
@@ -117,21 +117,18 @@ namespace BigBangTest.Migrations
 
                     b.HasKey("room_Id");
 
-                    b.HasIndex("motel_Id1");
+                    b.HasIndex("motel_Id");
 
                     b.ToTable("Room");
                 });
 
             modelBuilder.Entity("BigBangTest.Models.Room", b =>
                 {
-                    b.HasOne("BigBangTest.Models.Motel", null)
-                        .WithMany("Room")
-                        .HasForeignKey("motel_Id1");
-                });
+                    b.HasOne("BigBangTest.Models.Motel", "motel_ID")
+                        .WithMany()
+                        .HasForeignKey("motel_Id");
 
-            modelBuilder.Entity("BigBangTest.Models.Motel", b =>
-                {
-                    b.Navigation("Room");
+                    b.Navigation("motel_ID");
                 });
 #pragma warning restore 612, 618
         }

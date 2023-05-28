@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BigBangTest.Migrations
+namespace BigBangTest.Migrations.ApplicationDb
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -57,28 +57,27 @@ namespace BigBangTest.Migrations
                 columns: table => new
                 {
                     room_Id = table.Column<int>(type: "int", nullable: false),
-                    motel_Id = table.Column<int>(type: "int", nullable: false),
                     room_Number = table.Column<int>(type: "int", nullable: true),
                     Room_Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Property_Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Available_Status = table.Column<bool>(type: "bit", nullable: false),
                     price = table.Column<double>(type: "float", nullable: false),
-                    motel_Id1 = table.Column<int>(type: "int", nullable: true)
+                    motel_Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Room", x => x.room_Id);
                     table.ForeignKey(
-                        name: "FK_Room_Motel_motel_Id1",
-                        column: x => x.motel_Id1,
+                        name: "FK_Room_Motel_motel_Id",
+                        column: x => x.motel_Id,
                         principalTable: "Motel",
                         principalColumn: "motel_Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Room_motel_Id1",
+                name: "IX_Room_motel_Id",
                 table: "Room",
-                column: "motel_Id1");
+                column: "motel_Id");
         }
 
         /// <inheritdoc />

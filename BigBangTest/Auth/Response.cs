@@ -1,12 +1,4 @@
-﻿/*namespace JWTCodeFirst.Auth
-{
-    public class Response
-    {
-    }
-}
-*/
-
-namespace Authentication7.Auth
+﻿namespace BigBangTest.Auth
 {
     public class Response
     {

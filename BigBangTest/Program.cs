@@ -1,10 +1,13 @@
-
 using BigBangTest.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using BigBangTest.Auth;
 using System.Text;
+using BigBangTest.Services.MotelServices;
+using BigBangTest.Services.RoomServices;
+using System.Text.Json.Serialization;
 
 namespace BigBangTest
 {
@@ -47,15 +50,29 @@ namespace BigBangTest
                 };
             });
 
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                options.JsonSerializerOptions.WriteIndented = true;
+            });
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddScoped<IMotelServices, MotelServices>();
+            builder.Services.AddScoped<IRoomServices,RoomServices>();
+           
+           
 
             builder.Services.AddDbContext<ApplicationDbContext>(
             optionsAction: options => options.UseSqlServer(
+            builder.Configuration.GetConnectionString(name: "TFA")));
+
+            builder.Services.AddDbContext<AuthorizationDBContext>(
+            optionsAction: options => options.UseSqlServer(
             builder.Configuration.GetConnectionString(name: "SQLConnection")));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -67,7 +84,9 @@ namespace BigBangTest
 
             app.UseHttpsRedirection();
 
+            
             app.UseAuthorization();
+            app.UseAuthentication();
 
 
             app.MapControllers();

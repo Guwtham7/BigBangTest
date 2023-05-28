@@ -15,9 +15,9 @@ namespace BigBangTest.Models
 
         [Required]
         public string Amenities { get; set; } = string.Empty;
-        [Required]
+        
         public string RoomOptions { get; set; } = string.Empty;
-        [Required]
+        
         public string Rating { get; set; } = string.Empty;
 
         
